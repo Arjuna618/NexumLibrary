@@ -1,0 +1,135 @@
+export const ARRAS_COLORS: Record<number | string, string> = {
+  0: '#3ca4cb',
+  1: '#8abc3f',
+  2: '#e03e41',
+  3: '#cc669c',
+  4: '#c49608',
+  5: '#ec7b0f',
+  6: '#895918',
+  7: '#13808e',
+  8: '#fdf380',
+  9: '#726f6f',
+  10: '#e8ebf7',
+  11: '#efc74b',
+  12: '#e7896d',
+  13: '#8d6adf',
+  14: '#7adbba',
+  15: '#ef99c3',
+  16: '#b58efd',
+  17: '#a4a4ad',
+  18: '#a7a7af',
+  19: '#484848',
+  25: '#c49608',
+  26: '#ec7b0f',
+  27: '#895918',
+  28: '#13808e',
+  30: '#a913cf',
+  31: '#226ef6',
+  32: '#ff1000',
+  33: '#ff9000',
+  34: '#00e00b',
+  35: '#ffd300',
+  39: '#654321',
+  40: '#e58100',
+  41: '#267524',
+  'blue': '#3ca4cb',
+  'green': '#8abc3f',
+  'red': '#e03e41',
+  'magenta': '#cc669c',
+  'yellow': '#fdf380',
+  'grey': '#a7a7af',
+  'gray': '#a7a7af',
+  'dgrey': '#726f6f',
+  'vlgrey': '#e8ebf7',
+  'lgrey': '#a4a4ad',
+  'gold': '#efc74b',
+  'orange': '#e7896d',
+  'purple': '#8d6adf',
+  'aqua': '#7adbba',
+  'pink': '#ef99c3',
+  'lavender': '#b58efd',
+  'teal': '#7ad3db',
+  'lgreen': '#b9e87e',
+  'black': '#484848',
+  'white': '#dbdbdb',
+  'guiwhite': '#ffffff',
+  'guiblack': '#000000',
+  'mustard': '#c49608',
+  'tangerine': '#ec7b0f',
+  'brown': '#895918',
+  'cyan': '#13808e',
+  'rainbow': '#ff0000',
+  'trans': '#5bcefa',
+  'veryLightGrey': '#e8ebf7',
+  'veryLightGray': '#e8ebf7',
+  'hexagon': '#7adbba',
+  'square': '#efc74b',
+  'triangle': '#e7896d',
+  'pentagon': '#8d6adf',
+  'neutral': '#fdf380',
+  'crasher': '#ef99c3',
+  'egg': '#e8ebf7',
+  'circle': '#e8ebf7',
+  'wall': '#a4a4ad',
+  'lightGrey': '#a4a4ad',
+  'lightGray': '#a4a4ad',
+  'lightGreen': '#b9e87e',
+  'darkGrey': '#726f6f',
+  'darkGray': '#726f6f',
+  'pureWhite': '#ffffff',
+  'pureBlack': '#000000',
+  'legendary': '#7ad3db',
+  'shiny': '#b9e87e',
+};
+
+export const ARRAS_COLOR_SLOTS: Record<string, number> = {
+  teal: 0, legendary: 0,
+  lightGreen: 1, shiny: 1,
+  orange: 2, triangle: 2,
+  yellow: 3, neutral: 3,
+  aqua: 4, hexagon: 4,
+  pink: 5, crasher: 5,
+  veryLightGrey: 6, veryLightGray: 6, egg: 6, circle: 6,
+  lightGrey: 7, lightGray: 7, wall: 7,
+  pureWhite: 8,
+  black: 9,
+  blue: 10,
+  green: 11,
+  red: 12,
+  gold: 13, square: 13,
+  purple: 14, pentagon: 14,
+  magenta: 15,
+  grey: 16, gray: 16,
+  darkGrey: 17, darkGray: 17,
+  white: 18,
+};
+
+export const COLOR_SLOT_NAMES: readonly string[] = [
+  'Shield Bars', 'Health Bars', 'Triangles', 'Neutral', 'Hexagons', 'Crashers', 'Eggs', 'Walls',
+  'Text', 'Borders', 'Blue', 'Green', 'Red', 'Squares', 'Pentagons', 'Purple',
+  'Barrels', 'Rogues', 'Background', 'Grid',
+];
+
+export const COLOR_SLOT_LIGHT: readonly string[] = [
+  '#7ad3db', '#b9e87e', '#e7896d', '#fdf380', '#7adbba', '#ef99c3', '#e8ebf7', '#a4a4ad',
+  '#ffffff', '#484848', '#3ca4cb', '#8abc3f', '#e03e41', '#efc74b', '#8d6adf', '#cc669c',
+  '#a7a7af', '#726f6f', '#dbdbdb', '#000000',
+];
+
+export const SLOT_ARRAS_NAME: readonly string[] = [
+  'teal', 'lightGreen', 'orange', 'yellow', 'aqua', 'pink', 'veryLightGrey', 'lightGrey',
+  'pureWhite', 'black', 'blue', 'green', 'red', 'gold', 'purple', 'magenta',
+  'grey', 'darkGrey', 'white', 'pureBlack',
+];
+
+for (const [name, slot] of Object.entries(ARRAS_COLOR_SLOTS)) {
+  if (ARRAS_COLORS[name] !== COLOR_SLOT_LIGHT[slot]) {
+    throw new Error(`colors: arras colour '${name}' is ${ARRAS_COLORS[name]} but slot ${slot} ("${COLOR_SLOT_NAMES[slot]}") is ${COLOR_SLOT_LIGHT[slot]}.`);
+  }
+}
+for (let slot = 0; slot < SLOT_ARRAS_NAME.length; slot++) {
+  const name = SLOT_ARRAS_NAME[slot]!;
+  if (ARRAS_COLORS[name] !== COLOR_SLOT_LIGHT[slot] || (slot !== 19 && ARRAS_COLOR_SLOTS[name] !== slot)) {
+    throw new Error(`colors: slot ${slot} is written as '${name}', which does not read back as that slot.`);
+  }
+}

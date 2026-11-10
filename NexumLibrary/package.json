@@ -1,0 +1,16 @@
+{
+  "name": "nexum-library",
+  "version": "0.1.0",
+  "description": "Bidirectional arras open-source / iStrongEngine tank conversion library",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./prebuilt/arras-2.0.10-rev3.json": "./prebuilt/arras-2.0.10-rev3.json",
+    "./prebuilt/source-tree.json": "./prebuilt/source-tree.json"
+  },
+  "files": [
+    "src",
+    "prebuilt"
+  ]
+}
